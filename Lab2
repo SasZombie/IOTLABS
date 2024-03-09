@@ -1,0 +1,237 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  @override
+  Page1 createState() => Page1();
+}
+
+class Page1 extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login Page'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                hintText: 'Enter your email',
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              controller: passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                hintText: 'Enter your password',
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Check if both fields have at least 1 character
+                if (emailController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty) {
+                  // Navigate to the home page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Page2(),
+                    ),
+                  );
+                } else {
+                  // Display an error message or handle invalid input
+                  print('Invalid input. Both fields are required.');
+                }
+              },
+              child: Text('Login'),
+            ),
+            
+              ElevatedButton(
+              onPressed: () {
+               Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Page3()),                  );
+              },
+              child: Text('Register'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class Page3 extends StatelessWidget{
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login Page'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                hintText: 'Enter your email',
+              ),
+            ),
+            SizedBox(height: 20),
+            TextField(
+              controller: passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                hintText: 'Enter your password',
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Check if both fields have at least 1 character
+                if (emailController.text.isNotEmpty &&
+                    passwordController.text.isNotEmpty) {
+                  // Navigate to the home page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Page2(),
+                    ),
+                  );
+                } else {
+                  // Display an error message or handle invalid input
+                  print('Invalid input. Both fields are required.');
+                }
+              },
+              child: Text('Register'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class Page2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Image Page'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ImageCard(name: 'Image 1', imageUrl: 'https://static.wikia.nocookie.net/nico-nextbots/images/5/5d/Obungakillfeed.webp/revision/latest?cb=20230402123725'),
+          ImageCard(name: 'Image 2', imageUrl: 'https://pbs.twimg.com/profile_images/1247736068994203653/XptN1w7n_400x400.jpg'),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('Log In page'),
+          ),
+          
+        ],
+      ),
+    );
+  }
+}
+
+class ImageCard extends StatelessWidget {
+  final String name;
+  final String imageUrl;
+
+  ImageCard({required this.name, required this.imageUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Image.network(
+            imageUrl,
+            width: 200,
+            height: 150,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              name,
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatelessWidget {
+  final String imageName;
+  final String imageUrl;
+
+  DetailPage({required this.imageName, required this.imageUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail Page'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.network(
+            imageUrl,
+            width: 300,
+            height: 200,
+            fit: BoxFit.cover,
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Image Name: $imageName',
+              style: TextStyle(fontSize: 24),
+            ),
+          ),
+          // Add more details or content as needed
+        ],
+      ),
+    );
+  }
+}
