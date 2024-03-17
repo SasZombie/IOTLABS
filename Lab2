@@ -52,10 +52,8 @@ class Page1 extends State<LoginPage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Check if both fields have at least 1 character
                 if (emailController.text.isNotEmpty &&
                     passwordController.text.isNotEmpty) {
-                  // Navigate to the home page
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -63,7 +61,6 @@ class Page1 extends State<LoginPage> {
                     ),
                   );
                 } else {
-                  // Display an error message or handle invalid input
                   print('Invalid input. Both fields are required.');
                 }
               },
@@ -120,10 +117,8 @@ class Page3 extends StatelessWidget{
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Check if both fields have at least 1 character
                 if (emailController.text.isNotEmpty &&
                     passwordController.text.isNotEmpty) {
-                  // Navigate to the home page
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -131,7 +126,6 @@ class Page3 extends StatelessWidget{
                     ),
                   );
                 } else {
-                  // Display an error message or handle invalid input
                   print('Invalid input. Both fields are required.');
                 }
               },
